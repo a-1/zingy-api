@@ -1,3 +1,12 @@
+*.csv
+*.dat
+*.out
+*.gz
+*.idea
+
+lib-cov
+npm-debug.log
+
 # Logs
 logs
 *.log
