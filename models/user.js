@@ -17,6 +17,10 @@ var userSchema = new mongoose.Schema({
     offers: [ { type: Schema.ObjectId, ref: mongoose.model('Offer').schema } ]
 });
 
+userSchema.path('email').validate(function(email) {
+    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailRegex.test(email);
+}, 'Invalid email address');
 
 userSchema.pre('save', function (next) {
     var user = this;

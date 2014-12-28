@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
-    name: {type: String, default: '', trim: true}
+    eventName: {type: String, default: '', trim: true},
+    venue:[mongoose.model('Venues').schema]
 });
 
 exports = module.exports = mongoose.model('Event', eventSchema);
