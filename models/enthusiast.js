@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 var enthusiastSchema = new mongoose.Schema({
     firstName: {type: String, default: '', trim: true},

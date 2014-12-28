@@ -3,8 +3,6 @@ var Coral = require('coral');
 
 module.exports = function (app) {
 
-    console.log(mongoose.model('User'));
-
     var config = {
         path: '/api/enthusiasts',
         model: mongoose.model('Enthusiast'),
