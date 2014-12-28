@@ -10,7 +10,13 @@ var app = express();
 
 //connect to mongo-db
 mongoose.connect(config.MONGO_URI);
+// Bootstrap models
+fs.readdirSync(__dirname + '/models').forEach(function (file) {
+    require(__dirname + '/models/' + file);
+});
 
+
+//express config
 app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -18,7 +24,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //allow cross-origin
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Request headers you wish to allow
@@ -28,7 +34,6 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-
 // Force HTTPS on Heroku
 if (app.get('env') === 'production') {
     app.use(function (req, res, next) {
@@ -38,13 +43,13 @@ if (app.get('env') === 'production') {
 }
 
 // Load all controllers
-fs.readdir('./controllers', function(err, files){
-    files.forEach(function(fileName){
-        require('./controllers/' + fileName)(app)
+fs.readdir('./controllers', function (err, files) {
+    files.forEach(function (fileName) {
+        require(__dirname + '/controllers/' + fileName)(app);
     });
 });
 
-
+//listen express server on port mention
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });

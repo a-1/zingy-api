@@ -7,9 +7,6 @@
 lib-cov
 npm-debug.log
 
-#Dont check-in configs
-config.js
-
 # Logs
 logs
 *.log
