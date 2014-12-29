@@ -9,4 +9,4 @@ var coachingDetailsSchema = new mongoose.Schema({
 
 });
 
-exports = module.exports = mongoose.model('CoachingDetails', coachingDetailsSchema);
+exports = module.exports = mongoose.model('CoachingDetail', coachingDetailsSchema);

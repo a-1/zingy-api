@@ -44,8 +44,8 @@ if (app.get('env') === 'production') {
 
 //this is require for CORS local
 app.options("*", function(req,res,next) {
-    res.send(200);
-    next();
+    res.sendStatus(200);
+    res.end();
 });
 
 // Load all controllers

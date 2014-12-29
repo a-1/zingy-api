@@ -6,4 +6,8 @@ var certificateSchema = new mongoose.Schema({
     validTo: {type: Date, default: Date.now(), trim: true}
 });
 
+certificateSchema.path('validTo').validate(function(validTo) {
+    return (this.validFrom <= validTo);
+}, 'invalid start Date');
+
 exports = module.exports = mongoose.model('Certificate', certificateSchema);

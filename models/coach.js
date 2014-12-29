@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var coachingDetails = require('./coachingDetails');
+var certificates = require('./certificates');
+var venues = require('./venue');
 var coachSchema = new mongoose.Schema({
     name: {type: String, default: '', trim: true},
     sports: {type: String, default: '', trim: true},
@@ -8,8 +10,8 @@ var coachSchema = new mongoose.Schema({
     privateCoaching:{type: Boolean, default: false,trim: true},
     freeTrials:{type: Boolean, default: false,trim: true},
     certificates:[ mongoose.model('Certificate').schema],
-    coachingDetails: [ mongoose.model('CoachingDetails').schema ],
-    venues:[mongoose.model('Venues').schema]
+    coachingDetails: [ mongoose.model('CoachingDetail').schema ],
+    venues:[mongoose.model('Venue').schema]
 });
 
 exports = module.exports = mongoose.model('Coach', coachSchema);

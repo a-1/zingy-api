@@ -4,8 +4,8 @@ var Coral = require('coral');
 module.exports = function (app) {
 
     var config = {
-        path: '/api/suppliers',
-        model: mongoose.model('Supplier'),
+        path: '/api/event',
+        model: mongoose.model('Event'),
         methods: ['GET', 'POST', 'PUT']
     };
 
