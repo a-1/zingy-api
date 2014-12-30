@@ -31,26 +31,26 @@ function createToken(user) {
 }
 
 
-module.exports = function (app) {
+exports = module.exports = function (app) {
 
-    app.get('/api/me', ensureAuthenticated, function (req, res) {
-        User.findById(req.user, function (err, user) {
-            res.send(user);
-        });
-    });
-
-    app.put('/api/me', ensureAuthenticated, function (req, res) {
-        User.findById(req.user, function (err, user) {
-            if (!user) {
-                return res.status(400).send({message: 'User not found'});
-            }
-            user.displayName = req.body.displayName || user.displayName;
-            user.email = req.body.email || user.email;
-            user.save(function (err) {
-                res.status(200).end();
-            });
-        });
-    });
+    //app.get('/api/user', ensureAuthenticated, function (req, res) {
+    //    User.findById(req.user, function (err, user) {
+    //        res.send(user);
+    //    });
+    //});
+    //
+    ////app.put('/api/user', ensureAuthenticated, function (req, res) {
+    ////    User.findById(req.user, function (err, user) {
+    ////        if (!user) {
+    ////            return res.status(400).send({message: 'User not found'});
+    ////        }
+    ////        user.displayName = req.body.displayName || user.displayName;
+    ////        user.email = req.body.email || user.email;
+    ////        user.save(function (err) {
+    ////            res.status(200).end();
+    ////        });
+    ////    });
+    ////});
 
     app.post('/api/auth/login', function (req, res) {
         User.findOne({email: req.body.email}, '+password', function (err, user) {
@@ -217,3 +217,7 @@ module.exports = function (app) {
     });
 
 };
+
+
+// Login Required middleware.
+exports.ensureAuthenticated = ensureAuthenticated;

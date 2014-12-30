@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var coachingDetails = require('./coachingDetails');
 var certificates = require('./certificates');
 var venues = require('./venue');
+
 var coachSchema = new mongoose.Schema({
     name: {type: String, default: '', trim: true},
     sports: {type: String, default: '', trim: true},

@@ -1,51 +1,32 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors');
+var compress = require('compression');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var config = require('./config');
 
+var corsOptions = {
+    origin: true,
+    methods: ['GET, POST, OPTIONS, PUT, PATCH, DELETE'],
+    credentials: true
+};
+
 //initialize app
 var app = express();
+//config app
+app.set('port', process.env.PORT || 3000);
+app.use(logger('dev'));
+app.use(compress());
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
 //connect to mongo-db
 mongoose.connect(config.MONGO_URI);
 // Bootstrap models
 fs.readdirSync(__dirname + '/models').forEach(function (file) {
     require(__dirname + '/models/' + file);
-});
-
-
-//express config
-app.set('port', process.env.PORT || 3000);
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-//allow cross-origin
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
-    // Set to true if you need the website to include cookies in the requests sent
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    // Pass to next layer of middleware
-    next();
-});
-// Force HTTPS on Heroku
-if (app.get('env') === 'production') {
-    app.use(function (req, res, next) {
-        var protocol = req.get('x-forwarded-proto');
-        protocol == 'https' ? next() : res.redirect('https://' + req.hostname + req.url);
-    });
-}
-
-//this is require for CORS local
-app.options("*", function(req,res,next) {
-    res.sendStatus(200);
-    res.end();
 });
 
 // Load all controllers
