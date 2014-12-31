@@ -1,6 +1,6 @@
 module.exports = {
     TOKEN_SECRET: process.env.TOKEN_SECRET || 'A hard to guess string',
-    MONGO_URI: process.env.MONGO_URI || 'localhost',
-    FACEBOOK_SECRET: process.env.FACEBOOK_SECRET || 'fb',
-    GOOGLE_SECRET: process.env.GOOGLE_SECRET || 'google'
+    MONGO_URI: process.env.ZINGY_MONGO_URI || '',
+    FACEBOOK_SECRET: process.env.ZINGY_FACEBOOK_SECRET || '',
+    GOOGLE_SECRET: process.env.ZINGY_GOOGLE_SECRET || ''
 };

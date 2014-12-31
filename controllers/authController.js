@@ -21,6 +21,18 @@ function ensureAuthenticated(req, res, next) {
     next();
 }
 
+function getCurrentUser(req, res) {
+    if (!req.headers.authorization) {
+        return res.status(401).send({message: 'Please make sure your request has an Authorization header'});
+    }
+    var token = req.headers.authorization.split(' ')[1];
+    var payload = jwt.decode(token, config.TOKEN_SECRET);
+    if (payload.exp <= moment().unix()) {
+        return res.status(401).send({message: 'Token has expired'});
+    }
+    return payload.sub;
+}
+
 function createToken(user) {
     var payload = {
         sub: user._id,
@@ -221,3 +233,4 @@ exports = module.exports = function (app) {
 
 // Login Required middleware.
 exports.ensureAuthenticated = ensureAuthenticated;
+exports.getCurrentUser = getCurrentUser;

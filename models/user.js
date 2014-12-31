@@ -8,16 +8,16 @@ var userSchema = new mongoose.Schema({
     displayName: String,
     facebook: String,
     google: String,
-    enthusiast: { type: Schema.ObjectId, ref: mongoose.model('Enthusiast').schema },
-    player: { type: Schema.ObjectId, ref: mongoose.model('Player').schema },
-    coach: { type: Schema.ObjectId, ref: mongoose.model('Coach').schema },
-    facilities: [ { type: Schema.ObjectId, ref: mongoose.model('Facility').schema } ],
-    suppliers: [ { type: Schema.ObjectId, ref: mongoose.model('Supplier').schema } ],
-    events: [ { type: Schema.ObjectId, ref: mongoose.model('Event').schema } ],
-    offers: [ { type: Schema.ObjectId, ref: mongoose.model('Offer').schema } ]
+    enthusiast: {type: Schema.Types.ObjectId, ref: 'Enthusiast'},
+    player: {type: Schema.Types.ObjectId, ref: 'Player'},
+    coach: {type: Schema.Types.ObjectId, ref: 'Coach'},
+    facilities: [{type: Schema.Types.ObjectId, ref: 'Facility'}],
+    suppliers: [{type: Schema.Types.ObjectId, ref: 'Supplier'}],
+    events: [{type: Schema.Types.ObjectId, ref: 'Event'}],
+    offers: [{type: Schema.Types.ObjectId, ref: 'Offer'}]
 });
 
-userSchema.path('email').validate(function(email) {
+userSchema.path('email').validate(function (email) {
     var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     return emailRegex.test(email);
 }, 'Invalid email address');
