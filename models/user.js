@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
+require('./event');
+require('./offer');
+require('./supplier');
+
 
 var userSchema = new mongoose.Schema({
     email: {type: String, unique: true, lowercase: true},
@@ -16,11 +20,6 @@ var userSchema = new mongoose.Schema({
     events: [{type: Schema.Types.ObjectId, ref: 'Event'}],
     offers: [{type: Schema.Types.ObjectId, ref: 'Offer'}]
 });
-
-userSchema.path('email').validate(function (email) {
-    var emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    return emailRegex.test(email);
-}, 'Invalid email address');
 
 userSchema.pre('save', function (next) {
     var user = this;

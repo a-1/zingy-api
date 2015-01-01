@@ -13,6 +13,16 @@ var corsOptions = {
     credentials: true
 };
 
+
+//connect to mongo-db
+mongoose.connect(config.MONGO_URI);
+
+// Bootstrap mongoose models
+fs.readdirSync('./models').forEach(function (file) {
+    require('./models/' + file);
+});
+
+
 //initialize app
 var app = express();
 //config app
@@ -22,12 +32,6 @@ app.use(compress());
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-//connect to mongo-db
-mongoose.connect(config.MONGO_URI);
-// Bootstrap models
-fs.readdirSync(__dirname + '/models').forEach(function (file) {
-    require(__dirname + '/models/' + file);
-});
 
 // Load all controllers
 fs.readdir('./controllers', function (err, files) {

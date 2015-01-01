@@ -7,8 +7,7 @@ module.exports = function (app) {
     var config = {
         path: '/api/enthusiasts',
         model: mongoose.model('Enthusiast'),
-        methods: ['GET', 'POST', 'PUT'],
-        middlewares:[authController.ensureAuthenticated],
+        middlewares: [authController.ensureAuthenticated],
         updateRef: {
             model: mongoose.model('User'),
             path: 'enthusiast',

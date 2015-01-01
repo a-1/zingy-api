@@ -5,12 +5,12 @@ var authController = require('./authController');
 module.exports = function (app) {
 
     var config = {
-        path: '/api/suppliers',
-        model: mongoose.model('Supplier'),
+        path: '/api/players',
+        model: mongoose.model('Player'),
         middlewares: [authController.ensureAuthenticated],
         updateRef: {
             model: mongoose.model('User'),
-            path: 'suppliers',
+            path: 'player',
             findOneId: authController.getCurrentUser
         }
     };

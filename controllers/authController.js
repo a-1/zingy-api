@@ -1,7 +1,5 @@
 var path = require('path');
 var qs = require('querystring');
-var bcrypt = require('bcryptjs');
-var logger = require('morgan');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var request = require('request');
@@ -42,27 +40,7 @@ function createToken(user) {
     return jwt.encode(payload, config.TOKEN_SECRET);
 }
 
-
 exports = module.exports = function (app) {
-
-    //app.get('/api/user', ensureAuthenticated, function (req, res) {
-    //    User.findById(req.user, function (err, user) {
-    //        res.send(user);
-    //    });
-    //});
-    //
-    ////app.put('/api/user', ensureAuthenticated, function (req, res) {
-    ////    User.findById(req.user, function (err, user) {
-    ////        if (!user) {
-    ////            return res.status(400).send({message: 'User not found'});
-    ////        }
-    ////        user.displayName = req.body.displayName || user.displayName;
-    ////        user.email = req.body.email || user.email;
-    ////        user.save(function (err) {
-    ////            res.status(200).end();
-    ////        });
-    ////    });
-    ////});
 
     app.post('/api/auth/login', function (req, res) {
         User.findOne({email: req.body.email}, '+password', function (err, user) {
@@ -229,7 +207,6 @@ exports = module.exports = function (app) {
     });
 
 };
-
 
 // Login Required middleware.
 exports.ensureAuthenticated = ensureAuthenticated;
