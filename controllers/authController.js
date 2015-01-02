@@ -1,4 +1,3 @@
-var path = require('path');
 var qs = require('querystring');
 var jwt = require('jwt-simple');
 var moment = require('moment');
@@ -120,6 +119,7 @@ exports = module.exports = function (app) {
                         var user = new User();
                         user.google = profile.sub;
                         user.displayName = profile.name;
+                        user.email = profile.email;
                         user.save(function (err) {
                             var token = createToken(user);
                             res.send({token: token});
@@ -183,6 +183,7 @@ exports = module.exports = function (app) {
                         var user = new User();
                         user.facebook = profile.id;
                         user.displayName = profile.name;
+                        user.email = profile.email;
                         user.save(function () {
                             var token = createToken(user);
                             res.send({token: token});

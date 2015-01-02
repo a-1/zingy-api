@@ -8,7 +8,6 @@ module.exports = function (app) {
             if (err) {
                 return res.json(err);
             }
-
             res.send(user);
         });
     });

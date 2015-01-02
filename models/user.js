@@ -1,17 +1,15 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
-require('./event');
-require('./offer');
-require('./supplier');
-
 
 var userSchema = new mongoose.Schema({
-    email: {type: String, unique: true, lowercase: true},
-    password: {type: String, select: false},
+    email: { type: String, unique: true, lowercase: true },
+    password: { type: String, select: false },
     displayName: String,
     facebook: String,
     google: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     enthusiast: {type: Schema.Types.ObjectId, ref: 'Enthusiast'},
     player: {type: Schema.Types.ObjectId, ref: 'Player'},
     coach: {type: Schema.Types.ObjectId, ref: 'Coach'},
