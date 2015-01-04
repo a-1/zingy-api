@@ -30,7 +30,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(compress());
 app.use(cors(corsOptions));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:'5mb'}));
 
 
 // Load all controllers
