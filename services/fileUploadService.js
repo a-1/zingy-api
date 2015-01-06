@@ -1,13 +1,9 @@
-var qs = require('querystring');
-var jwt = require('jwt-simple');
-var moment = require('moment');
-var request = require('request');
 var config = require('../config');
 
- function fileUploadToAws (filePath, image){
+function fileUploadToAws(filePath, image) {
     var AWS = require('aws-sdk');
 
-    AWS.config.region= 'us-west-2';
+    AWS.config.region = 'us-west-2';
     AWS.config.update({accessKeyId: config.AWS_ACCESS_KEY, secretAccessKey: config.AWS_SECRET_KEY});
 
     var s3 = new AWS.S3();
@@ -22,5 +18,5 @@ var config = require('../config');
     })
 
 };
-exports = module.exports = function(app){};
+
 exports.fileUploadToAws = fileUploadToAws;

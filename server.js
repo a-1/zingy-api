@@ -13,7 +13,6 @@ var corsOptions = {
     credentials: true
 };
 
-
 //connect to mongo-db
 mongoose.connect(config.MONGO_URI);
 
