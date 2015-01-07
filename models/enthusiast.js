@@ -17,9 +17,7 @@ var enthusiastSchema = new mongoose.Schema({
     facebookUrl: {type: String, default: ''},
     youtubeUrl: {type: String, default: ''},
     websiteUrl: {type: String, default: ''},
-    otherUrl: {type: String, default: ''},
-    profileImgUrl: {type: String, default: ''},
-    galleryImgUrl: {type: String, default: ''}
+    otherUrl: {type: String, default: ''}
 });
 
 exports = module.exports = mongoose.model('Enthusiast', enthusiastSchema);

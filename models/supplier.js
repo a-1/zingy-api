@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 var supplierSchema = new mongoose.Schema({
     name: {type: String, default: ''},
-    imgUrl: {type: String, default: ''},
     speciality: {type: String, default: ''},
     description: {type: String, default: ''},
     streetOne: {type: String, default: ''},

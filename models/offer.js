@@ -5,7 +5,6 @@ var googleMapsCoordinate = require('../services/googleMapsService');
 
 var offerSchema = new mongoose.Schema({
     provider: {type: String, default: ''},
-    imgUrl: {type: String, default: ''},
     heading: {type: String, default: ''},
     description: {type: String, default: ''},
     startDate: {type: Date, default: ''},

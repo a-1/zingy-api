@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
     organiser: {type: String, default: ''},
-    imgUrl: {type: String, default: ''},
     heading: {type: String, default: ''},
     description: {type: String, default: ''},
     date: {type: Date, default: ''},

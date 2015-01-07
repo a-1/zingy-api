@@ -28,8 +28,7 @@ var coachSchema = new mongoose.Schema({
             certificationName: {type: String, default: ''},
             certificationBody: {type: String, default: ''},
             certificationValidFrom: {type: Date, default: ''},
-            certificationValidTo: {type: Date, default: ''},
-            certificationImgUrl: {type: String, default: ''}
+            certificationValidTo: {type: Date, default: ''}
         }
     ]
 });
