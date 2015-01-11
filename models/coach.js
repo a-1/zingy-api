@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var coachSchema = new mongoose.Schema({
+var coachSchema = new Schema({
+    profile: {type: Schema.Types.ObjectId, ref: 'Profile'},
+    aboutCoaching: String,
     sports: [
         {
             name: String,
@@ -17,6 +20,8 @@ var coachSchema = new mongoose.Schema({
             kidsFromAge: Number,
             kidsToAge: Number,
             kidsCharges: Number,
+            privateCoaching: Boolean,
+            freeTrialClasses: Boolean,
             coachingFrequency: String,
             startTime: {type: Date, default: ''},
             endTime: {type: Date, default: ''},
@@ -25,6 +30,10 @@ var coachSchema = new mongoose.Schema({
             city: {type: String, default: ''},
             state: {type: String, default: ''},
             pin: {type: String, default: ''},
+            loc: {
+                type: {type: String},
+                coordinates: {type: [Number], index: '2dsphere'}
+            },
             certificationName: {type: String, default: ''},
             certificationBody: {type: String, default: ''},
             certificationValidFrom: {type: Date, default: ''},

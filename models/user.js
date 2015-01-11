@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
 
-var userSchema = new mongoose.Schema({
+var userSchema = new Schema({
     email: { type: String, unique: true, lowercase: true },
     password: { type: String, select: false },
     displayName: String,
@@ -10,6 +10,7 @@ var userSchema = new mongoose.Schema({
     google: String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
+    profile: {type: Schema.Types.ObjectId, ref: 'Profile'},
     enthusiast: {type: Schema.Types.ObjectId, ref: 'Enthusiast'},
     player: {type: Schema.Types.ObjectId, ref: 'Player'},
     coach: {type: Schema.Types.ObjectId, ref: 'Coach'},
