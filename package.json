@@ -18,5 +18,8 @@
     "morgan": "1.5.1",
     "request": "2.51.0",
     "aws-sdk": "2.1.2"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
