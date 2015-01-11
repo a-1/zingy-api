@@ -5,7 +5,7 @@ var authController = require('./authController');
 module.exports = function (app) {
 
     app.get('/api/account', authController.ensureAuthenticated, function (req, res) {
-        mongoose.model('User').findById(req.user, null, {populate: [{path: 'enthusiast player coach facilities suppliers events offers'}]}, function (err, user) {
+        mongoose.model('User').findById(req.user, null, {populate: [{path: 'profile enthusiast player coach facilities suppliers events offers'}]}, function (err, user) {
             if (err) {
                 return res.json(err);
             }
