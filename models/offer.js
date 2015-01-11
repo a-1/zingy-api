@@ -1,7 +1,4 @@
 var mongoose = require('mongoose');
-var config = require('../config');
-var fileUploader = require('../services/fileUploadService');
-var googleMapsCoordinate = require('../services/googleMapsService');
 
 var offerSchema = new mongoose.Schema({
     provider: {type: String, default: ''},
@@ -21,17 +18,6 @@ var offerSchema = new mongoose.Schema({
     loc: {
         type: {type: String},
         coordinates: {type: [Number], index: '2dsphere'}
-    }
-});
-
-offerSchema.pre('save', function (next) {
-    googleMapsCoordinate.getCoordinates(next, this)
-});
-
-offerSchema.post('save', function (doc) {
-    if (doc.imgUrl) {
-        fileUploader.fileUploadToAws("offer/" + doc._id.toString(), doc.imgUrl);
-        mongoose.model('Offer').findByIdAndUpdate(doc._id, {imgUrl: null});
     }
 });
 
