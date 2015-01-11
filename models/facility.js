@@ -12,7 +12,11 @@ var facilitySchema = new mongoose.Schema({
     email: {type: String, default: ''},
     phoneOne: {type: String, default: ''},
     phoneTwo: {type: String, default: ''},
-    url: {type: String, default: ''}
+    url: {type: String, default: ''},
+    loc: {
+        type: {type: String},
+        coordinates: {type: [Number], index: '2dsphere'}
+    }
 });
 
 exports = module.exports = mongoose.model('Facility', facilitySchema);

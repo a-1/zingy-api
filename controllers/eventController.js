@@ -7,7 +7,6 @@ module.exports = function (app) {
     var config = {
         path: '/api/events',
         model: mongoose.model('Event'),
-        middlewares: [authController.ensureAuthenticated],
         updateRef: {
             model: mongoose.model('User'),
             path: 'events',
@@ -15,7 +14,13 @@ module.exports = function (app) {
         }
     };
 
-    //this will create api paths
+    //get api is public
+    config.method = ['GET'];
+    app.use(new Coral(config));
+
+    //update, delete is authenticated
+    config.middlewares = [authController.ensureAuthenticated];
+    config.method = ['POST', 'PUT', 'DELETE'];
     app.use(new Coral(config));
 
 };
