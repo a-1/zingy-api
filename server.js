@@ -15,12 +15,10 @@ var corsOptions = {
 
 //connect to mongo-db
 mongoose.connect(config.MONGO_URI);
-
 // Bootstrap mongoose models
 fs.readdirSync('./models').forEach(function (file) {
     require('./models/' + file);
 });
-
 
 //initialize app
 var app = express();
