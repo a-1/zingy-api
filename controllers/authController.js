@@ -162,13 +162,6 @@ exports = module.exports = function (app) {
                             return res.send({ token: createToken(existingUser) });
                         }
                         createNewUser('google', profile, res);
-                        //var user = new User();
-                        //user.google = profile.sub;
-                        //user.displayName = profile.name;
-                        //user.save(function(err) {
-                        //    var token = createToken(user);
-                        //    res.send({ token: token });
-                        //});
                     });
                 }
             });
@@ -226,14 +219,6 @@ exports = module.exports = function (app) {
                             return res.send({token: token});
                         }
                         createNewUser('facebook', profile, res);
-                        //var user = new User();
-                        //user.facebook = profile.id;
-                        //user.displayName = profile.name;
-                        //user.email = profile.email;
-                        //user.save(function () {
-                        //    var token = createToken(user);
-                        //    res.send({token: token});
-                        //});
                     });
                 }
             });
