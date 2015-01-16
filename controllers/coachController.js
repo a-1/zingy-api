@@ -7,7 +7,6 @@ module.exports = function (app) {
     var config = {
         path: '/api/coaches',
         model: mongoose.model('Coach'),
-        middlewares: [authController.ensureAuthenticated],
         query:{
           options:{
               populate:'profile'
