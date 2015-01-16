@@ -27,13 +27,17 @@ app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(compress());
 app.use(cors(corsOptions));
-app.use(bodyParser.json({limit:'5mb'}));
+app.use(bodyParser.json({limit: '5mb'}));
 
 // Load all controllers
 fs.readdir('./controllers', function (err, files) {
     files.forEach(function (fileName) {
         require(__dirname + '/controllers/' + fileName)(app);
     });
+});
+
+app.get('/', function (req, res) {
+    res.json({version: 'v1'});
 });
 
 //listen express server on port mention
