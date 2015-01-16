@@ -7,6 +7,11 @@ module.exports = function (app) {
     var config = {
         path: '/api/players',
         model: mongoose.model('Player'),
+        query:{
+            options:{
+                populate:'profile'
+            }
+        },
         updateRef: {
             model: mongoose.model('User'),
             path: 'player',

@@ -29,7 +29,6 @@ app.use(compress());
 app.use(cors(corsOptions));
 app.use(bodyParser.json({limit:'5mb'}));
 
-
 // Load all controllers
 fs.readdir('./controllers', function (err, files) {
     files.forEach(function (fileName) {
